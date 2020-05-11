@@ -1,0 +1,18 @@
+version: '3'
+
+networks:
+  ArangoDB_Data:
+
+services:
+  arangodb:
+    image: vitaliikobrin/arangodb
+    ports:
+      - 8529:8529
+    volumes:
+      - ./cloudstat-data/db:/var/lib/arangodb3
+      - ./cloudstat-data/backups:/artifacts
+    env_file:
+      - arangodb-properties.env
+    networks:
+      - ArangoDB_Data
+    restart: always
