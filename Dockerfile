@@ -12,5 +12,4 @@ RUN apk update && apk upgrade \
 
 COPY scripts .
 
-CMD ./set-up-backup-by-schedule.sh \
-	&& arangod --log.level queries=debug --server.descriptors-minimum 128
+CMD ./set-up-backup-by-schedule.sh && ./run-arangodb.sh
