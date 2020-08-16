@@ -3,6 +3,7 @@ FROM arangodb:3.6.1
 # Install AWS CLI
 RUN apk update && apk upgrade \
 	&& apk add --no-cache bash curl python3 \
+	&& rm -rf /var/cache/apk/* \
 	&& python3 -V \
 	&& curl "https://bootstrap.pypa.io/get-pip.py" -o "get-pip.py" \
 	&& python3 get-pip.py \
