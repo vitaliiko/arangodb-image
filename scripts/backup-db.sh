@@ -30,6 +30,6 @@ aws s3 cp $backup_name s3://$s3_backup_dir/
 print_log "Remove $ARANGO_DB_NAME $STAGE database backup artifacts"
 rm -rf $backup_prefix
 
-./remove-obsolete-backup-files.sh
+/remove-obsolete-backup-files.sh
 
 print_log "Done!"
