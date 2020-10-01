@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 
+artifacts_dir=backup_artifacts
 backup_prefix="${ARANGO_DB_NAME}-${STAGE}-backup"
 s3_backup_dir=${ARANGO_S3_BACKUP_DIR}
 
 current_date_time=$(date '+%Y-%m-%d-%H-%M-%S')
 backup_name=$backup_prefix-$current_date_time.tar.gz
 
-mkdir -p artifacts && cd artifacts
+mkdir -p $artifacts_dir && cd $artifacts_dir
 
 print_log () {
     echo
