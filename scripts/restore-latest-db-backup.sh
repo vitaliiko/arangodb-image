@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 artifacts_dir=backup_restore_artifacts
-backup_dir="${ARANGO_DB_NAME}-${STAGE}-backup"
+backup_dir="${ARANGO_DB_NAME}-${BAKCUP_NAME_SUFFIX}-backup"
 s3_backup_dir=${ARANGO_S3_BACKUP_DIR}
 
 print_log () {

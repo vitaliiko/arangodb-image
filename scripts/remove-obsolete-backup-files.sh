@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-backup_prefix="${ARANGO_DB_NAME}-${STAGE}-backup"
+backup_prefix="${ARANGO_DB_NAME}-${BAKCUP_NAME_SUFFIX}-backup"
 s3_backup_dir=${ARANGO_S3_BACKUP_DIR}
 
 files_list=$(aws s3 ls s3://${s3_backup_dir}/ | grep ${backup_prefix})
