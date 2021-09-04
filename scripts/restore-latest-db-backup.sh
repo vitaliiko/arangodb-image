@@ -18,6 +18,8 @@ mkdir -p $artifacts_dir && cd $artifacts_dir
 print_log "Download and unpack backup from S3"
 echo $AWS_WORKING_S3_BUCKET/$latest_backup_file_name
 aws s3 cp s3://$AWS_WORKING_S3_BUCKET/$latest_backup_file_name $latest_backup_file_name
+
+print_log "Unzipping backup"
 tar -zxvf $latest_backup_file_name
 
 print_log "Restore backup"
