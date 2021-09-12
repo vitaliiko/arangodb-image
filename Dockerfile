@@ -1,4 +1,4 @@
-FROM arangodb:3.7.11
+FROM arangodb:3.8.1
 
 # Install AWS CLI
 RUN apk update && apk upgrade \
