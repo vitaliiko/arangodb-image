@@ -10,7 +10,14 @@ if [ "$ARANGO_DB_RUN_OPTION" == "MINIMUM_MEMORY_USAGE" ]; then
         --rocksdb.dynamic-level-bytes false \
         --rocksdb.block-cache-size 2560000 \
         --rocksdb.enforce-block-cache-size-limit true
-else
+fi
+
+if [ "$ARANGO_DB_RUN_OPTION" == "AUTO_UPGRADE_REQUIRED" ]; then
+    arangod --log.level queries=info \
+        --database.auto-upgrade true
+fi
+
+if [ "$ARANGO_DB_RUN_OPTION" == "" ]; then
     arangod --log.level queries=debug \
         --server.descriptors-minimum 128
 fi
