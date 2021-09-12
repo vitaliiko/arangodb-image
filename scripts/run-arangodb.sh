@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 if [ "$ARANGO_DB_RUN_OPTION" == "MINIMUM_MEMORY_USAGE" ]; then
-    arangod --log.level queries=debug \
-        --server.descriptors-minimum 128 \
+    arangod --log.level queries=warn \
+        --server.descriptors-minimum 1024 \
         --rocksdb.max-total-wal-size 1024000 \
         --rocksdb.write-buffer-size 2048000 \
         --rocksdb.max-write-buffer-number 2 \
