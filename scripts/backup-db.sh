@@ -20,11 +20,30 @@ arangodump \
   --output-directory ${BACKUP_DIR_NAME} \
   --compress-output
 
+if [[ $? -ne 0 ]]
+then
+  print_log "Failed to create DB dump"
+  exit 1
+fi
+
 print_log "Compress $ARANGO_DB_NAME database backup"
 tar -zcvf $backup_name $BACKUP_DIR_NAME/
 
+if [[ $? -ne 0 ]]
+then
+  print_log "Failed to create archive with DB backup"
+  exit 1
+fi
+
 print_log "Upload backup to S3"
 aws s3 cp $backup_name s3://$AWS_WORKING_S3_BUCKET/backups/
+
+if [[ $? -ne 0 ]]
+then
+  print_log "Failed to upload backup to S3"
+  exit 1
+fi
+print_log "Upload have been completed"
 
 print_log "Remove $ARANGO_DB_NAME database backup artifacts"
 rm -rf $BACKUP_DIR_NAME
