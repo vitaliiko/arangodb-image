@@ -10,17 +10,18 @@ backup_name=$backup_prefix-$current_date_time.tar.gz
 mkdir -p $artifacts_dir && cd $artifacts_dir
 
 print_log () {
-    echo
-    echo $(date '+%Y-%m-%dT%H:%M:%SZ') "|" $1
+  echo
+  echo $(date '+%Y-%m-%dT%H:%M:%SZ') "|" $1
 }
 
 print_log "Prepare $ARANGO_DB_NAME $BAKCUP_NAME_SUFFIX database backup"
 arangodump \
-    --server.username ${ARANGO_USER} \
-    --server.password ${ARANGO_ROOT_PASSWORD} \
-    --server.database ${ARANGO_DB_NAME} \
-    --output-directory ${backup_prefix} \
-    --compress-output
+  --server.endpoint tcp://${ARANGO_HOST}:${ARANGO_PORT} \
+  --server.username ${ARANGO_USER} \
+  --server.password ${ARANGO_ROOT_PASSWORD} \
+  --server.database ${ARANGO_DB_NAME} \
+  --output-directory ${backup_prefix} \
+  --compress-output
 
 print_log "Compress $ARANGO_DB_NAME $BAKCUP_NAME_SUFFIX database backup"
 tar -zcvf $backup_name $backup_prefix/
