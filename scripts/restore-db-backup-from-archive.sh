@@ -10,6 +10,6 @@ arangorestore \
   --server.password ${ARANGO_ROOT_PASSWORD} \
   --server.database ${ARANGO_DB_NAME} \
   --create-database true \
-  --input-directory "cloudstat-prod-backup"
+  --input-directory ${BAKCUP_DIR_NAME}
 
 print_log "Done!"

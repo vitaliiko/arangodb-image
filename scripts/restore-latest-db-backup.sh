@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 artifacts_dir=backup_restore_artifacts
-backup_dir="${ARANGO_DB_NAME}-${BAKCUP_NAME_SUFFIX}-backup"
 s3_backup_dir=${ARANGO_S3_BACKUP_DIR}
 
 print_log () {
@@ -29,7 +28,7 @@ arangorestore \
   --server.password ${ARANGO_ROOT_PASSWORD} \
   --server.database ${ARANGO_DB_NAME} \
   --create-database true \
-  --input-directory "$backup_dir"
+  --input-directory "$BAKCUP_DIR_NAME"
 
 print_log "Remove database backup artifacts"
 rm -rf $artifacts_dir
