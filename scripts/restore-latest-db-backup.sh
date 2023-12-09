@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 artifacts_dir=backup_restore_artifacts
-backups_dir=$AWS_WORKING_S3_BUCKET/backups
+backups_dir=$AWS_WORKING_S3_BUCKET/$AWS_S3_BACKUP_DIR
 
 print_log () {
   echo
