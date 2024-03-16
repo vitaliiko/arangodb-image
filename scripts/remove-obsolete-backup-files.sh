@@ -22,7 +22,7 @@ then
   fi
 
   print_log "Removing obsolete backup files"
-  print_log $files_to_remove | xargs -n1 aws s3 rm
+  echo $files_to_remove | xargs -n1 aws s3 rm
 
   if [[ $? -ne 0 ]]
   then
@@ -30,8 +30,8 @@ then
     exit 1
   fi
 
-  print_log Obsolete backups are cleaned up
+  print_log "Obsolete backups are cleaned up"
 
 else
-  print_log Skip obsolete backups removing
+  print_log "Skip obsolete backups removing"
 fi
