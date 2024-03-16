@@ -5,7 +5,7 @@ networks:
 
 services:
   arangodb:
-    image: vitaliikobrin/arangodb:2.1
+    image: vitaliikobrin/arangodb:2.2.2
     ports:
       - 8529:8529
     volumes:
