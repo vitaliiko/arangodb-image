@@ -4,6 +4,11 @@ backups_dir=$AWS_WORKING_S3_BUCKET/$AWS_S3_BACKUP_DIR
 files_list=$(aws s3 ls s3://${backups_dir}/ | grep ${BACKUP_DIR_NAME})
 backup_files_count=$(echo "$files_list" | wc -l)
 
+print_log () {
+  echo
+  echo $(date '+%Y-%m-%dT%H:%M:%SZ') "|" $1
+}
+
 if [ "$backup_files_count" -gt "$ARANGO_BACKUP_FILES_COUNT" ]
 then
   files_to_remove=$(echo "$files_list" \
@@ -12,21 +17,21 @@ then
 
   if [[ $? -ne 0 ]]
   then
-    echo "Failed get list of backups"
+    print_log "Failed get list of backups"
     exit 1
   fi
 
-  echo "Removing obsolete backup files"
-  echo $files_to_remove | xargs -n1 aws s3 rm
+  print_log "Removing obsolete backup files"
+  print_log $files_to_remove | xargs -n1 aws s3 rm
 
   if [[ $? -ne 0 ]]
   then
-    echo "Failed remove obsolete backup files"
+    print_log "Failed remove obsolete backup files"
     exit 1
   fi
 
-  echo Obsolete backups are cleaned up
+  print_log Obsolete backups are cleaned up
 
 else
-  echo Skip obsolete backups removing
+  print_log Skip obsolete backups removing
 fi
