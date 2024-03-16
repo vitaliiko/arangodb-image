@@ -36,7 +36,7 @@ then
 fi
 
 print_log "Upload $backup_name to S3"
-aws s3 cp $backup_name s3://$AWS_WORKING_S3_BUCKET/backups/
+aws s3 cp $backup_name s3://$AWS_WORKING_S3_BUCKET/$AWS_S3_BACKUP_DIR/
 
 if [[ $? -ne 0 ]]
 then
