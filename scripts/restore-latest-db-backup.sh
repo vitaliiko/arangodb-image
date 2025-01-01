@@ -39,13 +39,18 @@ then
 fi
 
 print_log "Restore backup"
+print_log "Endpoint: tcp://${ARANGO_HOST}:${ARANGO_PORT}"
+print_log "Username: ${ARANGO_USER}"
+print_log "DB name: ${ARANGO_DB_NAME}"
+print_log "Input directory: ${BACKUP_DIR_NAME}"
+
 arangorestore \
   --server.endpoint tcp://${ARANGO_HOST}:${ARANGO_PORT} \
   --server.username ${ARANGO_USER} \
   --server.password ${ARANGO_ROOT_PASSWORD} \
   --server.database ${ARANGO_DB_NAME} \
   --create-database true \
-  --input-directory "$BACKUP_DIR_NAME"
+  --input-directory "${BACKUP_DIR_NAME}"
 
 if [[ $? -ne 0 ]]
 then
