@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-db_image_name=vitaliikobrin/arangodb:2.2.3
+x86_image_name=vitaliikobrin/arangodb:2.2.3
+arm_image_name=vitaliikobrin/arangodb:2.2.3-arm
 
-docker build -t $db_image_name .
-docker push $db_image_name
+docker build -t $x86_image_name .
+docker push $x86_image_name
+
+docker build -t $arm_image_name .
+docker push $arm_image_name

@@ -16,3 +16,17 @@ services:
     networks:
       - ArangoDB_Data
     restart: always
+
+  arangodb_arm:
+    build:
+      dockerfile: Dockerfile.arm
+    ports:
+      - 8529:8529
+    volumes:
+      - ./cloudstat-data/db:/var/lib/arangodb3
+      - ./cloudstat-data/backups:/artifacts
+    env_file:
+      - arangodb-properties.env
+    networks:
+      - ArangoDB_Data
+    restart: always
